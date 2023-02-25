@@ -4,35 +4,43 @@ body {
   padding: 15px;
   background-color: #121214;
 }
-.wrap {
+
+.main {
   width: 100%;
   max-width: 320px;
   margin: 0 auto;
 }
+
 .profile {
   text-align: center;
   color: #FFF;
 }
+
 .photo {
   border-radius: 50%;
   height:88px;
 }
+
 .profile_name {
   font-weight: bold;
   display: block;
 }
-.at {
-  font-size: 13px;
+
+.description {
+  font-size: 13.5px;
 }
+
 .links ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 .links ul li {
   margin: 14px 0;
 }
-.link {
+
+.button {
   padding: 14px;
   display: block;
   background-color: #024AAD;
@@ -42,36 +50,43 @@ body {
   transition: ease all 0.3s;
   color: #FFF;
 }
-.link:hover {
+
+.button:hover {
   opacity: 0.85;
 }
+
 .card {
   margin: 14px 0;
   padding: 10px;
   background-color: #FFF;
   border-radius: 4px;
 }
+
 .card h3 {
   margin: 0;
   color: #202024;
 }
+
 .card p {
   margin: 5px 0;
   font-size: 13px;
   color: #202024;
 }
+
 .card a {
   margin: 5px 0;
   font-size: 13px;
   color: #202024;
   text-decoration: none;
 }
+
 .footer {
   margin: 14px 0;
   padding: 10px;
   background-color: #FFF;
   border-radius: 4px;
 }
+
 .footer p {
   margin: 5px 0;
   font-size: 12px;
