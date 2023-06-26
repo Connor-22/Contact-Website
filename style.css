@@ -93,3 +93,7 @@ body {
   color: #202024;
   text-align: center;
 }
+
+.error {
+  text-align: center;
+}
