@@ -21,9 +21,11 @@ body {
   height:88px;
 }
 
-.profile_name {
+.profile_name a {
   font-weight: bold;
   display: block;
+  text-decoration: none;
+  color: #FFF;
 }
 
 .description {
