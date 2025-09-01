@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connor's Personal Top 25 Rankings</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    header p {
+      margin: 0.25rem 0 0;
+      font-size: 1rem;
+      color: #bbb;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      padding: 1rem;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .controls input, .controls select, .controls button {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    table {
+      width: 95%;
+      margin: 1rem auto;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: center;
+    }
+    th {
+      background: #333;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .trend-up { color: green; font-weight: bold; }
+    .trend-down { color: red; font-weight: bold; }
+    .dark-mode {
+      background: #181818;
+      color: #eee;
+    }
+    .dark-mode header { background: #111; }
+    .dark-mode table { background: #222; }
+    .dark-mode th { background: #000; }
+    .dark-mode tr:nth-child(even) { background: #2a2a2a; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Connor's Personal Top 25 Rankings</h1>
+    <p>Just my opinion — not official</p>
+  </header>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search teams...">
+    <select id="conferenceFilter">
+      <option value="">All Conferences</option>
+      <option>SEC</option>
+      <option>Big Ten</option>
+      <option>Big 12</option>
+      <option>ACC</option>
+      <option>Other</option>
+    </select>
+    <button id="darkToggle">Toggle Dark Mode</button>
+  </div>
+
+  <table id="rankingTable">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Team</th>
+        <th>Record</th>
+        <th>Trend</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script>
+    const data = [
+      { rank: 1, team: "Ohio State", record: "1-0", prev: 1, conference: "Big Ten" },
+      { rank: 2, team: "Penn State", record: "1-0", prev: 2, conference: "Big Ten" },
+      { rank: 3, team: "Texas", record: "0-1", prev: 3, conference: "SEC" },
+      { rank: 4, team: "Georgia", record: "1-0", prev: 4, conference: "SEC" },
+      { rank: 5, team: "Oregon", record: "1-0", prev: 5, conference: "Big Ten" },
+      { rank: 6, team: "Clemson", record: "0-1", prev: 6, conference: "ACC" },
+      { rank: 7, team: "Miami (FL)", record: "1-0", prev: 7, conference: "ACC" },
+      { rank: 8, team: "LSU", record: "1-0", prev: 8, conference: "SEC" },
+      { rank: 9, team: "Notre Dame", record: "0-1", prev: 9, conference: "IND" },
+      { rank: 10, team: "South Carolina", record: "1-0", prev: 10, conference: "SEC" },
+      { rank: 11, team: "Michigan", record: "1-0", prev: 11, conference: "Bin Ten" },
+      { rank: 12, team: "Florida", record: "1-0", prev: 12, conference: "SEC" },
+      { rank: 13, team: "Arizona State", record: "1-0", prev: 13, conference: "Big 12" },
+      { rank: 14, team: "Alabama", record: "0-1", prev: 14, conference: "SEC" },
+      { rank: 15, team: "Oklahoma", record: "1-0", prev: 15, conference: "SEC" },
+      { rank: 16, team: "Ole Miss", record: "1-0", prev: 16, conference: "SEC" },
+      { rank: 17, team: "SMU", record: "1-0", prev: 17, conference: "ACC" },
+      { rank: 18, team: "Florida State", record: "1-0", prev: 18, conference: "ACC" },
+      { rank: 19, team: "Iowa State", record: "1-0", prev: 19, conference: "Big 12" },
+      { rank: 20, team: "Texas A&M", record: "1-0", prev: 20, conference: "SEC" },
+      { rank: 21, team: "Indiana", record: "1-0", prev: 21, conference: "Big Ten" },
+      { rank: 22, team: "Texas Tech", record: "1-0", prev: 22, conference: "Big 12" },
+      { rank: 23, team: "Tennessee", record: "1-0", prev: 23, conference: "SEC" },
+      { rank: 24, team: "Missouri", record: "1-0", prev: 24, conference: "SEC" },
+      { rank: 25, team: "Louisville", record: "1-0", prev: 25, conference: "ACC" },
+    ];
+
+    const tbody = document.querySelector("#rankingTable tbody");
+    const search = document.getElementById("search");
+    const filter = document.getElementById("conferenceFilter");
+    const darkToggle = document.getElementById("darkToggle");
+
+    function renderTable() {
+      tbody.innerHTML = "";
+      const term = search.value.toLowerCase();
+      const conf = filter.value;
+      data
+        .filter(d => d.team.toLowerCase().includes(term))
+        .filter(d => !conf || d.conference === conf)
+        .forEach(d => {
+          const trend = d.prev > d.rank ? `<span class='trend-up'>▲ ${d.prev - d.rank}</span>` : d.prev < d.rank ? `<span class='trend-down'>▼ ${d.rank - d.prev}</span>` : "—";
+          const row = `<tr>
+            <td>${d.rank}</td>
+            <td>${d.team}</td>
+            <td>${d.record}</td>
+            <td>${trend}</td>
+          </tr>`;
+          tbody.insertAdjacentHTML("beforeend", row);
+        });
+    }
+
+    search.addEventListener("input", renderTable);
+    filter.addEventListener("change", renderTable);
+    darkToggle.addEventListener("click", () => document.body.classList.toggle("dark-mode"));
+
+    renderTable();
+  </script>
+</body>
+</html>
