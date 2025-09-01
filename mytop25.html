@@ -81,11 +81,17 @@
     <input type="text" id="search" placeholder="Search teams...">
     <select id="conferenceFilter">
       <option value="">All Conferences</option>
-      <option>SEC</option>
+      <option>Southeastern</option>
       <option>Big Ten</option>
       <option>Big 12</option>
-      <option>ACC</option>
-      <option>Other</option>
+      <option>Atlantic Coast</option>
+      <option>Pacific 12</option>
+      <option>Mountain West</option>
+      <option>American</option>
+      <option>Mid-American</option>
+      <option>Sun Belt</option>
+      <option>Conference USA</option>
+      <option>IA Independents</option>
     </select>
     <button id="darkToggle">Toggle Dark Mode</button>
   </div>
@@ -107,29 +113,29 @@
     const data = [
       { rank: 1, team: "Ohio State", record: "1-0", prev: 1, conference: "Big Ten" },
       { rank: 2, team: "Penn State", record: "1-0", prev: 2, conference: "Big Ten" },
-      { rank: 3, team: "Texas", record: "0-1", prev: 3, conference: "SEC" },
-      { rank: 4, team: "Georgia", record: "1-0", prev: 4, conference: "SEC" },
+      { rank: 3, team: "Texas", record: "0-1", prev: 3, conference: "Southeastern" },
+      { rank: 4, team: "Georgia", record: "1-0", prev: 4, conference: "Southeastern" },
       { rank: 5, team: "Oregon", record: "1-0", prev: 5, conference: "Big Ten" },
-      { rank: 6, team: "Clemson", record: "0-1", prev: 6, conference: "ACC" },
-      { rank: 7, team: "Miami (FL)", record: "1-0", prev: 7, conference: "ACC" },
-      { rank: 8, team: "LSU", record: "1-0", prev: 8, conference: "SEC" },
-      { rank: 9, team: "Notre Dame", record: "0-1", prev: 9, conference: "IND" },
-      { rank: 10, team: "South Carolina", record: "1-0", prev: 10, conference: "SEC" },
+      { rank: 6, team: "Clemson", record: "0-1", prev: 6, conference: "Atlantic Coast" },
+      { rank: 7, team: "Miami (FL)", record: "1-0", prev: 7, conference: "Atlantic Coast" },
+      { rank: 8, team: "LSU", record: "1-0", prev: 8, conference: "Southeastern" },
+      { rank: 9, team: "Notre Dame", record: "0-1", prev: 9, conference: "IA Independents" },
+      { rank: 10, team: "South Carolina", record: "1-0", prev: 10, conference: "Southeastern" },
       { rank: 11, team: "Michigan", record: "1-0", prev: 11, conference: "Bin Ten" },
-      { rank: 12, team: "Florida", record: "1-0", prev: 12, conference: "SEC" },
+      { rank: 12, team: "Florida", record: "1-0", prev: 12, conference: "Southeastern" },
       { rank: 13, team: "Arizona State", record: "1-0", prev: 13, conference: "Big 12" },
-      { rank: 14, team: "Alabama", record: "0-1", prev: 14, conference: "SEC" },
-      { rank: 15, team: "Oklahoma", record: "1-0", prev: 15, conference: "SEC" },
-      { rank: 16, team: "Ole Miss", record: "1-0", prev: 16, conference: "SEC" },
-      { rank: 17, team: "SMU", record: "1-0", prev: 17, conference: "ACC" },
-      { rank: 18, team: "Florida State", record: "1-0", prev: 18, conference: "ACC" },
+      { rank: 14, team: "Alabama", record: "0-1", prev: 14, conference: "Southeastern" },
+      { rank: 15, team: "Oklahoma", record: "1-0", prev: 15, conference: "Southeastern" },
+      { rank: 16, team: "Ole Miss", record: "1-0", prev: 16, conference: "Southeastern" },
+      { rank: 17, team: "SMU", record: "1-0", prev: 17, conference: "Atlantic Coast" },
+      { rank: 18, team: "Florida State", record: "1-0", prev: 18, conference: "Atlantic Coast" },
       { rank: 19, team: "Iowa State", record: "1-0", prev: 19, conference: "Big 12" },
-      { rank: 20, team: "Texas A&M", record: "1-0", prev: 20, conference: "SEC" },
+      { rank: 20, team: "Texas A&M", record: "1-0", prev: 20, conference: "Southeastern" },
       { rank: 21, team: "Indiana", record: "1-0", prev: 21, conference: "Big Ten" },
       { rank: 22, team: "Texas Tech", record: "1-0", prev: 22, conference: "Big 12" },
-      { rank: 23, team: "Tennessee", record: "1-0", prev: 23, conference: "SEC" },
-      { rank: 24, team: "Missouri", record: "1-0", prev: 24, conference: "SEC" },
-      { rank: 25, team: "Louisville", record: "1-0", prev: 25, conference: "ACC" },
+      { rank: 23, team: "Tennessee", record: "1-0", prev: 23, conference: "Southeastern" },
+      { rank: 24, team: "Missouri", record: "1-0", prev: 24, conference: "Southeastern" },
+      { rank: 25, team: "Louisville", record: "1-0", prev: 25, conference: "Atlantic Coast" },
     ];
 
     const tbody = document.querySelector("#rankingTable tbody");
